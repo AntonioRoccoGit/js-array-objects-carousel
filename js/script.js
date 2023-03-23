@@ -27,6 +27,11 @@ const filmImages = [
     }
 ];
 
+
+//BOTTONE START PAUSE
+const btnP = document.querySelector("#replay");
+console.log(btnP);
+btnP.addEventListener("click", startPause);
 //seleziono gli elementi del dom che andranno manipolati
 let sliderItemsContainer = document.querySelector(".slider-items"); //contenitore img
 let thumbNailsItems = document.querySelector(".thumbnails-image");
@@ -47,7 +52,7 @@ thumbNailsItemsArrey[itemCounter].classList.add("active");
 nextUp.addEventListener("click", function () {
     goNext();
     clearInterval(myAutoInterval);
-    myAutoInterval = setInterval(goPreviousl, 3000);
+    myAutoInterval = setInterval(goNext, 3000);
 });
 
 //imposto il bottone prev
@@ -65,12 +70,12 @@ prevDown.addEventListener("click", function () {
 myAutoInterval = setInterval(goPreviousl, 3000);
 
 //aggiungiamo la possibilita di avere un clear on hover sullo slider
-sliderItemsContainer.addEventListener("mouseenter", function () {
-    clearInterval(myAutoInterval);
-});
-sliderItemsContainer.addEventListener("mouseout", function () {
-    myAutoInterval = setInterval(goPreviousl, 3000);
-});
+// sliderItemsContainer.addEventListener("mouseenter", function () {
+//     clearInterval(myAutoInterval);
+// });
+// sliderItemsContainer.addEventListener("mouseout", function () {
+//     myAutoInterval = setInterval(goPreviousl, 3000);
+// });
 
 //setto stato iniziale del mio intervallo
 // let myAutoInterval = false;
@@ -107,17 +112,19 @@ function imgInAGrid(myImgArray) {
     myImgArray.forEach((film) => {
         sliderItemsContainer.innerHTML +=
             `<div class="item">
-            <img src="${film.image}" alt="">
+                <img src="${film.image}" alt="">
+                <section class="image-text">
+                    <h2>${film.title}</h2>
+                    <p>${film.text}</p>
+                </section>
             </div>`;
-        thumbNailsItems.innerHTML +=
-            `<div class="thumb-item">
-            <img src="${film.image}" alt="">
-            </div>`;
+        
+        thumbImg = document.createElement("div");
+        thumbImg.classList.add("thumb-item");
+        thumbImg.innerHTML = `<img src="${film.image}" alt="">`;
+        thumbNailsItems.append(thumbImg);
     });
-}
-
-
-
+};
 
 function goPreviousl() {
     if (itemCounter === 0) {
@@ -142,7 +149,7 @@ function goPreviousl() {
         sliderItemsArray[itemCounter].classList.add("active");
         thumbNailsItemsArrey[itemCounter].classList.add("active");
     };
-}
+};
 
 function goNext() {
     if (itemCounter === sliderItemsArray.length - 1) {
@@ -167,4 +174,14 @@ function goNext() {
         sliderItemsArray[itemCounter].classList.add("active");
         thumbNailsItemsArrey[itemCounter].classList.add("active");
     }
-}
+};
+
+function startPause() {
+    if (myAutoInterval === null) {
+        myAutoInterval = setInterval(goPreviousl, 3000);
+    }else {
+        clearInterval(myAutoInterval);
+        myAutoInterval = null;
+    }
+};
+
