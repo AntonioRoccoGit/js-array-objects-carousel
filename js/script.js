@@ -69,47 +69,13 @@ prevDown.addEventListener("click", function () {
 
 myAutoInterval = setInterval(goPreviousl, 3000);
 
-//aggiungiamo la possibilita di avere un clear on hover sullo slider
-// sliderItemsContainer.addEventListener("mouseenter", function () {
-//     clearInterval(myAutoInterval);
-// });
-// sliderItemsContainer.addEventListener("mouseout", function () {
-//     myAutoInterval = setInterval(goPreviousl, 3000);
-// });
-
-//setto stato iniziale del mio intervallo
-// let myAutoInterval = false;
-
-// const autoPrevElm = myAutoPrev();
-
-// //imposto l'autoplay
-// function myAutoPrev() {
-//     if(myAutoInterval === false) {
-//         myAutoInterval = setInterval(goPreviousl, 3000);    
-//     }
-
-// }
-
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////MY FUNCTION
 
 function imgInAGrid(myImgArray) {
 
     //grid img and thumbnail generator
-    // for (let i = 0; i < myImgArray.length; i++) {
-
-    //     let currentImg = myImgArray[i];
-
-    //     sliderItemsContainer.innerHTML +=
-    //         `<div class="item">
-    //         <img src="${currentImg}" alt="">
-    //         </div>`;
-    //     thumbNailsItems.innerHTML +=
-    //         `<div class="thumb-item">
-    //         <img src="${currentImg}" alt="">
-    //         </div>`;
-    // };
-    myImgArray.forEach((film) => {
+    myImgArray.forEach((film, index) => {
         sliderItemsContainer.innerHTML +=
             `<div class="item">
                 <img src="${film.image}" alt="">
@@ -122,6 +88,18 @@ function imgInAGrid(myImgArray) {
         thumbImg = document.createElement("div");
         thumbImg.classList.add("thumb-item");
         thumbImg.innerHTML = `<img src="${film.image}" alt="">`;
+        thumbImg.addEventListener("click", function() {
+            clearInterval(myAutoInterval);
+            sliderItemsArray[itemCounter].classList.remove("active");
+            thumbNailsItemsArrey[itemCounter].classList.remove("active");
+
+            itemCounter = index;
+
+            sliderItemsArray[itemCounter].classList.add("active");
+            thumbNailsItemsArrey[itemCounter].classList.add("active");
+            myAutoInterval = setInterval(goPreviousl, 3000);
+
+        });
         thumbNailsItems.append(thumbImg);
     });
 };
