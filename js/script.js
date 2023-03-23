@@ -177,11 +177,20 @@ function goNext() {
 };
 
 function startPause() {
+    innerBtn = document.querySelector("#replay-icon");
     if (myAutoInterval === null) {
         myAutoInterval = setInterval(goPreviousl, 3000);
+        innerBtn.classList.remove("fa-regular");
+        innerBtn.classList.remove("fa-circle-play");
+        innerBtn.classList.add("fa-solid");
+        innerBtn.classList.add("fa-pause");
     }else {
         clearInterval(myAutoInterval);
         myAutoInterval = null;
+        innerBtn.classList.remove("fa-solid");
+        innerBtn.classList.remove("fa-pause");
+        innerBtn.classList.add("fa-regular");
+        innerBtn.classList.add("fa-circle-play");
     }
 };
 

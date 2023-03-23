@@ -136,10 +136,12 @@ img {
     color: white;
     z-index: 2;
     min-height: 50px;
+    min-width: 50px;
 }
 
 #replay-icon {
     font-size: 6rem;
+    display: none;
 }
 
 #replay:hover #replay-icon {
