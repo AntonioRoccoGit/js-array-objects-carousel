@@ -1,0 +1,112 @@
+/* *********|RESET|********* */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}    
+
+img {
+    width: 100%;
+    display: block;
+}    
+
+/* *********|UTILITIES|********* */
+.item.active {
+    display: block;
+}
+
+/* *********|LAYOUT|********* */
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* debug */
+    background-color: lightcoral;
+}    
+
+.slider {
+    display: flex;
+    width: 80%;
+    height: 50vw;
+    /* debug */
+    background-color: rgb(0, 0, 0);
+}    
+
+.slider-items {
+    height: 100%;
+    width: 80%;
+}    
+
+.item {
+    height: 100%;
+    display: none;
+}    
+
+.item img,
+.thumb-item img {
+    margin: 0 auto;
+    height: 100%;
+    object-fit: cover;
+}    
+
+/* thumbnails */
+.thumbnails {
+    width: 20%;
+    position: relative;
+}
+
+.thumbnails-image {
+    display: flex;
+    height: 100%;
+    flex-direction: column-reverse;
+}
+.thumb-item {
+    align-self: stretch;
+    display: block;
+    height: calc(100% / 5);
+    filter: opacity(.5);
+    object-fit: cover;
+}
+
+.thumbnails img {
+    width: 100%;
+}
+
+.thumb-item.active {
+    filter: opacity(1);
+    transform: scale(1.08);
+    z-index: 1;
+    border: 2px solid white;
+}
+ 
+/* slider button settings and layout */
+.next-up,
+.prev-down {
+    z-index: 2;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    filter: opacity(.6);
+}    
+.next-up {
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}    
+.prev-down {
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}    
+.next-up:hover, 
+.prev-down:hover {
+    cursor: pointer;
+    filter: opacity(.8);
+}    
