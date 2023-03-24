@@ -133,10 +133,17 @@ img {
 }    
 
 #replay {
+    position: absolute;
     color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     z-index: 2;
-    min-height: 50px;
-    min-width: 50px;
 }
 
 #replay-icon {
@@ -147,7 +154,5 @@ img {
 #replay:hover #replay-icon {
     cursor: pointer;
     display: block;
-    position: relative;
     filter: opacity(.6);
-    z-index: 2;
 }

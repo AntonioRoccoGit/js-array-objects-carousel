@@ -27,9 +27,6 @@ const filmImages = [
     }
 ];
 
-//start pause btn
-const btnP = document.querySelector("#replay");
-btnP.addEventListener("click", startPause);
 
 //next prev btn
 const nextUp = document.querySelector(".next-up");// bottone next
@@ -37,6 +34,9 @@ const prevDown = document.querySelector(".prev-down");//bottone prev
 
 imgInAGrid(filmImages);
 
+//start pause btn
+const btnP = document.querySelector("#replay-icon");
+btnP.addEventListener("click", startPause);
 //setting first displayed img
 const thumbNailsItemsArrey = document.querySelectorAll(".thumb-item");
 const sliderItemsArray = document.querySelectorAll(".item");
