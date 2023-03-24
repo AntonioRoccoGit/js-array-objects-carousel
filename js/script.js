@@ -90,13 +90,7 @@ function imgInAGrid(myImgArray) {
         thumbImg.innerHTML = `<img src="${film.image}" alt="">`;
         thumbImg.addEventListener("click", function() {
             clearInterval(myAutoInterval);
-            sliderItemsArray[itemCounter].classList.remove("active");
-            thumbNailsItemsArrey[itemCounter].classList.remove("active");
-
-            itemCounter = index;
-
-            sliderItemsArray[itemCounter].classList.add("active");
-            thumbNailsItemsArrey[itemCounter].classList.add("active");
+            hideDiscoverImg(index);
             myAutoInterval = setInterval(goPreviousl, 3000);
 
         });
@@ -106,51 +100,17 @@ function imgInAGrid(myImgArray) {
 
 function goPreviousl() {
     if (itemCounter === 0) {
-
-        sliderItemsArray[itemCounter].classList.remove("active");
-        thumbNailsItemsArrey[itemCounter].classList.remove("active");
-
-        itemCounter = sliderItemsArray.length - 1;
-
-        sliderItemsArray[itemCounter].classList.add("active");
-        thumbNailsItemsArrey[itemCounter].classList.add("active");
-
+       hideDiscoverImg((sliderItemsArray.length - 1));
     } else {
-
-        sliderItemsArray[itemCounter].classList.remove("active");
-        thumbNailsItemsArrey[itemCounter].classList.remove("active");
-
-        //aumento il contantore
-        itemCounter--;
-
-        //aggiungo la classe  al nuovo item
-        sliderItemsArray[itemCounter].classList.add("active");
-        thumbNailsItemsArrey[itemCounter].classList.add("active");
+        hideDiscoverImg((itemCounter - 1));
     };
 };
 
 function goNext() {
     if (itemCounter === sliderItemsArray.length - 1) {
-
-        sliderItemsArray[itemCounter].classList.remove("active");
-        thumbNailsItemsArrey[itemCounter].classList.remove("active");
-
-        itemCounter = 0;
-
-        sliderItemsArray[itemCounter].classList.add("active");
-        thumbNailsItemsArrey[itemCounter].classList.add("active");
+        hideDiscoverImg(0);
     } else {
-
-        //rimuovo classe precedente
-        sliderItemsArray[itemCounter].classList.remove("active");
-        thumbNailsItemsArrey[itemCounter].classList.remove("active");
-
-        //aumento il contantore
-        itemCounter++;
-
-        //aggiungo la classe  al nuovo item
-        sliderItemsArray[itemCounter].classList.add("active");
-        thumbNailsItemsArrey[itemCounter].classList.add("active");
+        hideDiscoverImg((itemCounter + 1));
     }
 };
 
@@ -172,3 +132,13 @@ function startPause() {
     }
 };
 
+function hideDiscoverImg(counter){
+    
+    sliderItemsArray[itemCounter].classList.remove("active");
+    thumbNailsItemsArrey[itemCounter].classList.remove("active");
+
+    itemCounter = counter; 
+
+    sliderItemsArray[itemCounter].classList.add("active");
+    thumbNailsItemsArrey[itemCounter].classList.add("active");
+};
