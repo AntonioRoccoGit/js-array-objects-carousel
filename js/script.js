@@ -83,18 +83,19 @@ function imgInAGrid(myImgArray) {
 
     //grid img and thumbnail generator
     myImgArray.forEach((film, index) => {
+        const {image, title, text} = film;
         sliderItemsContainer.innerHTML +=
             `<div class="item">
-                <img src="${film.image}" alt="">
+                <img src="${image}" alt="">
                 <section class="image-text">
-                    <h2>${film.title}</h2>
-                    <p>${film.text}</p>
+                    <h2>${title}</h2>
+                    <p>${text}</p>
                 </section>
             </div>`;
 
         thumbImg = document.createElement("div");
         thumbImg.classList.add("thumb-item");
-        thumbImg.innerHTML = `<img src="${film.image}" alt="">`;
+        thumbImg.innerHTML = `<img src="${image}" alt="">`;
         thumbImg.addEventListener("click", function () {
             clearInterval(myAutoInterval);
             hideDiscoverImg(index);
